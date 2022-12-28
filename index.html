@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Clock</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color:rgb(30, 186, 191);
+        max-width: 400px;
+        text-align: center;
+        padding: 4rem;
+        margin: auto;
+        border-radius: 50%;
+
+    }
+    .clock{
+        font-size: 5rem;
+        background-color: rgb(224, 224, 224);
+        border-radius: 1rem;
+    
+    }
+    .day, .dayOfWeek{
+        font-size: 1.5rem;
+
+    }
+    h1{
+        color: aliceblue;
+    }
+    
+</style>
+<body>
+    
+    <h1>Clock Tower</h1>
+    <div id="clock" class="clock"> Clock Tower</div>
+    <div class="bottom">
+
+        <div id="day" class="day"></div>
+        <div id="dayOfWeek" class="dayOfWeek"></div>
+    </div>
+
+    <script>
+        const showTime = ()=>{
+            let date = new Date()
+            // console.log(date)
+
+            let weekday = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ]
+            let months =[
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ]
+            let hr = date.getHours()
+            let min = date.getMinutes()
+            let sec = date.getSeconds()
+            let session = "AM"
+
+            let dayOfWeek = weekday[date.getDay()]
+            // console.log(dayOfWeek)
+            let dayOfMonth = date.getDate() 
+
+            if(hr == 0){
+                hr = 12
+            }
+            if (hr > 12){
+                hr = hr-12
+                session = "PM"
+            }
+
+            let time = hr + ':' + min + ':' + sec + ' ' + session
+            document.querySelector('.clock').inneText = time
+            document.querySelector('.clock').textContent = time
+
+            document.querySelector('.day').innerHTML = 
+            months[date.getMonth()] + '  ' +  dayOfMonth + ' , ' + date.getFullYear()
+            document.querySelector('.dayOfWeek').innerHTML = dayOfWeek
+            setTimeout(showTime,1000)
+
+        }
+        showTime()
+    </script>
+
+</body>
+</html>
